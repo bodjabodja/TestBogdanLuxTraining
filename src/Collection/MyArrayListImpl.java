@@ -17,19 +17,24 @@ public class MyArrayListImpl implements List {
     @Override
     public void add(Object value, int index) {
         if(index>=0 || index<=size){
-            Object[] newArray;
+
             if(size==array.length){
-                newArray = new Object[(int) (size /2*3+1)];
-
-            }
-            System.arraycopy(array,0,newArray,0,array.length);
-            if(index<size){
-                array[size] = value;
+                Object[] newArray = new Object[(int) (size /2*3+1)];
+                System.arraycopy(array,0,newArray,0,array.length);
             }
 
-
-
-            array[index]
+            if(index==size){
+                array[index]=value;
+            } else if(index==0){
+                System.arraycopy(array,0,array,1,array.length);
+                array[index]=value;
+            }else {
+                Object[] tmpArray = new Object[(int) (size - index)];
+                System.arraycopy(array, index, tmpArray, 0, size - index);
+                array[index] = value;
+                System.arraycopy(tmpArray, 0, array, index + 1, size - index);
+            }
+            size++;
         }else{
             throw new IndexOutOfBoundsException("Index out of bounds");
         }
