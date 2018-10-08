@@ -16,7 +16,7 @@ public class MyArrayListImpl implements List {
 
     @Override
     public void add(Object value, int index) {
-        if(index>=0 || index<=size){
+        if(index>=0 && index<=size){
 
             if(size==array.length){
                 Object[] newArray = new Object[(int) (size /2*3+1)];
@@ -52,6 +52,9 @@ public class MyArrayListImpl implements List {
 
     @Override
     public Object set(Object value, int index) {
+        if(index>=0 && index<=size-1){
+
+        }
         return null;
     }
 
