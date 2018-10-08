@@ -1,11 +1,17 @@
 package Collection;
 
+import java.util.NoSuchElementException;
+
 /**
  * Created by dsk16 on 10/8/2018.
  */
 public class MyArrayListImpl implements List {
     Object[] array;
     int size;
+
+    MyArrayListImpl(){
+        array = new Object[5];
+    }
 
     @Override
     public void add(Object value) {
@@ -36,13 +42,23 @@ public class MyArrayListImpl implements List {
             }
             size++;
         }else{
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("Index out of bounds!");
         }
     }
 
     @Override
     public Object remove(int index) {
-        return null;
+        if(index>=0 && index<=size-1){
+            Object removeObj = array[index];
+            Object[] tmpArray = new Object[(int) size-index-1];
+            System.arraycopy(array, index+1, tmpArray, 0, size-index-1);
+            System.arraycopy(tmpArray, 0, array, index, size-index-1);
+            array[size-1]=null;
+            size--;
+            return removeObj;
+        }else {
+            throw new NoSuchElementException("index of element out of bounds!");
+        }
     }
 
     @Override
@@ -53,38 +69,62 @@ public class MyArrayListImpl implements List {
     @Override
     public Object set(Object value, int index) {
         if(index>=0 && index<=size-1){
-
+            array[index]=value;
+            return  array[index];
+        }else{
+            throw new NoSuchElementException("index of element out of bounds!");
         }
-        return null;
     }
 
     @Override
     public void clear() {
-
+        for (int i=0;i<size;i++) {
+            array[i]=null;
+        }
+        size=0;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
+        if(size>0){
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean contains(Object value) {
+        for (Object val:array) {
+            if(val == value){
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public int indexOf(Object value) {
-        return 0;
+        for (int i = 0; i <size ; i++) {
+            if(array[i] == value){
+                return i;
+            }
+        }
+        throw new NoSuchElementException("There is no such element with input value in Array!");
     }
 
     @Override
     public int lastIndexOf(Object value) {
-        return 0;
+        for (int i = size-1; i >=0 ; i--) {
+            if(array[i] == value){
+                return i;
+            }
+        }
+
+        throw new NoSuchElementException("There is no such element with input value in Array!");
     }
 }
