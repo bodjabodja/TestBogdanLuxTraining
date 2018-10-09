@@ -5,6 +5,7 @@ package Collection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 /**
  * Created by dsk16 on 10/9/2018.
@@ -40,40 +41,42 @@ public class LinkedListImp implements List {
         size++;
     }
 
-    //TODO:repair
-
     @Override
     public void add(Object value, int index) {
         Node newNode = new Node(value);
-        if(index<0 && index>(size-1)){
+        if(index<0 || index>(size)){
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
 
         if(size==0){
             add(value);
         }else{
-
-            if (index > 0 && index < (size - 1)) {
+            if (index > 0 && index < (size-1)) {
                 Node current = getNode(index);
                 Node prevCurrent = getNode(index - 1);
                 prevCurrent.next = newNode;
                 current.prev = newNode;
                 newNode.prev = current;
                 newNode.next = current;
+                size++;
             } else if (index == 0) {
                 Node current = getNode(index);
                 head=newNode;
                 head.next=current;
                 head.prev = null;
                 current.prev = newNode;
+                size++;
             } else if (index == (size - 1)) {
                 Node prevCurrent = getNode(index - 1);
                 prevCurrent.next = newNode;
                 newNode.prev = prevCurrent;
                 newNode.next = null;
+                size++;
+            } else if (index == size){
+                add(value);
             }
         }
-        size++;
+
 
     }
 
@@ -86,7 +89,7 @@ public class LinkedListImp implements List {
             node = node.next;
 
         }
-        throw new NoSuchElementException("asdgfdsg");
+        throw new IndexOutOfBoundsException("asdgfdsg");
 
     }
 
@@ -96,7 +99,6 @@ public class LinkedListImp implements List {
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
         Node removeble = getNode(index);
-        System.out.println(removeble.value);
         if (index > 0 && index < size - 1) {
             Node prevRem = getNode(index-1);
             Node newxtRem = getNode(index + 1);
@@ -158,29 +160,41 @@ public class LinkedListImp implements List {
     @Override
     public int indexOf(Object value) {
         Node node = head;
-        int i = 0;
-        while(i != size){
-            if(value.equals(node.value)){
+        for (int i = 0; i <size ; i++) {
+            if(value == node.value){
                 return i;
             }
             node = node.next;
-            i++;
+
         }
-        throw new NoSuchElementException("indexOf: no such element in list!");
+
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object value) {
-        Node node = head;
-        int i = size-1;
-        while(i != -1){
-            if(value.equals(node.value)){
+        Node node = tail;
+        for (int i = size-1; i >=0 ; i--) {
+            if(value == node.value){
                 return i;
             }
             node = node.prev;
-            i--;
+
         }
-        throw new NoSuchElementException("indexOf: no such element in list!");
+        return -1;
+    }
+
+    @Override
+    public String toString(){
+        StringJoiner strJ = new StringJoiner(",","[","]");
+        Node node = head;
+        for (int i = 0; i <size ; i++) {
+
+            String value = String.valueOf(node.value);
+            strJ.add(value);
+            node = node.next;
+        }
+        return strJ.toString();
     }
 
     public Iterator iterator(){
