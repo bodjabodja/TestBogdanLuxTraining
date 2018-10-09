@@ -9,20 +9,26 @@ public class MyArrayListImpl implements List {
     Object[] array;
     int size;
 
+    static  final int INITIAL_CAPACITY = 5;
+
     MyArrayListImpl(){
-        array = new Object[5];
+        array = new Object[INITIAL_CAPACITY];
     }
 
     @Override
     public void add(Object value) {
         // size of newArray = array.length * 1.5
+        if(size==array.length){
+            Object[] newArray = new Object[(int) (size /2*3+1)];
+            System.arraycopy(array,0,newArray,0,array.length);
+        }
         array[size] = value;
         size++;
     }
 
     @Override
     public void add(Object value, int index) {
-        if(index>=0 && index<=size){
+        if(index>=0 && index<=size-1){
 
             if(size==array.length){
                 Object[] newArray = new Object[(int) (size /2*3+1)];
@@ -42,7 +48,7 @@ public class MyArrayListImpl implements List {
             }
             size++;
         }else{
-            throw new IndexOutOfBoundsException("Index out of bounds!");
+            throw new IndexOutOfBoundsException("add.Index out of bounds!");
         }
     }
 
@@ -57,7 +63,7 @@ public class MyArrayListImpl implements List {
             size--;
             return removeObj;
         }else {
-            throw new NoSuchElementException("index of element out of bounds!");
+            throw new NoSuchElementException("remove.index of element out of bounds!");
         }
     }
 
