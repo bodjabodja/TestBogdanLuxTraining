@@ -1,6 +1,7 @@
 package Collection;
 
 import java.util.NoSuchElementException;
+import java.util.StringJoiner;
 
 /**
  * Created by dsk16 on 10/8/2018.
@@ -128,12 +129,18 @@ public class MyArrayListImpl implements List {
 
     @Override
     public String toString() {
-        String result = "[";
-        for (int i=0;i<size;i++) {
-            result+=array[i]+",";
+//        String result = "[";
+//        for (int i=0;i<size;i++) {
+//            result+=array[i]+",";
+//        }
+//        result = result.substring(0,result.length()-1);
+//        result+="]";
+//        return result;
+        StringJoiner strJ = new StringJoiner(",","{","]");
+        for (int i = 0; i < size ; i++) {
+            String value = String.valueOf(array[i]);
+            strJ.add(value.toString());
         }
-        result = result.substring(0,result.length()-1);
-        result+="]";
-        return result;
+        return strJ.toString();
     }
 }
