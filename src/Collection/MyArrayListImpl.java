@@ -97,30 +97,22 @@ public class MyArrayListImpl implements List {
 
     @Override
     public boolean isEmpty() {
-        if(size>0){
-            return true;
-        }
-        return false;
+        return size == 0;
     }
 
     @Override
     public boolean contains(Object value) {
-        for (Object val:array) {
-            if(val == value){
-                return true;
-            }
-        }
-        return false;
+        return indexOf(value) != -1;
     }
 
     @Override
     public int indexOf(Object value) {
         for (int i = 0; i <size ; i++) {
-            if(array[i] == value){
+            if(value.equals(array[i])){
                 return i;
             }
         }
-        throw new NoSuchElementException("There is no such element with input value in Array!");
+        return -1;
     }
 
     @Override
@@ -132,5 +124,16 @@ public class MyArrayListImpl implements List {
         }
 
         throw new NoSuchElementException("There is no such element with input value in Array!");
+    }
+
+    @Override
+    public String toString() {
+        String result = "[";
+        for (int i=0;i<size;i++) {
+            result+=array[i]+",";
+        }
+        result = result.substring(0,result.length()-1);
+        result+="]";
+        return result;
     }
 }
