@@ -9,17 +9,20 @@ import java.util.StringJoiner;
 public class LinkedQueue implements Queue{
     Node first;
     int size;
-
+    private Node tail;
 
     @Override
     public void enqueue(Object value) {
         Node newNode = new Node(value);
-        if(size==0){
-            first=newNode;
-            first.prev=first;
-        }else{
-            //TODO: thonk how to create next node link
+        if (size == 0) {
+            first = newNode;
+            tail = newNode;
+            first.prev = tail;
+        } else {
+            tail.prev = newNode;
+            tail = newNode;
         }
+
         size++;
     }
 
