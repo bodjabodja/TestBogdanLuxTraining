@@ -66,7 +66,6 @@ public class LinkedListImp implements List {
                 head.next=current;
                 head.prev = null;
                 current.prev = newNode;
-                System.out.println(current.prev.value);
             } else if (index == (size - 1)) {
                 Node prevCurrent = getNode(index - 1);
                 prevCurrent.next = newNode;
