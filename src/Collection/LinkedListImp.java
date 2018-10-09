@@ -1,7 +1,7 @@
 package Collection;
 
 
-import com.study.List.Node;
+
 
 import java.util.NoSuchElementException;
 
@@ -9,14 +9,23 @@ import java.util.NoSuchElementException;
  * Created by dsk16 on 10/9/2018.
  */
 public class LinkedListImp implements List {
-    Node head;
-    Node tail;
-    int size;
+   private Node head;
+    private Node tail;
+    private int size;
 
+    private static class Node {
+        private Object value;
+        private Node next;
+        private Node prev;
+
+        private Node(Object value) {
+            this.value = value;
+        }
+    }
 
     @Override
     public void add(Object value) {
-        com.study.List.Node newNode = new com.study.List.Node(value);
+        Node newNode = new Node(value);
         if(size==0){
             head=newNode;
             newNode.prev=tail;
@@ -34,7 +43,7 @@ public class LinkedListImp implements List {
 
     @Override
     public void add(Object value, int index) {
-        com.study.List.Node newNode = new com.study.List.Node(value);
+        Node newNode = new Node(value);
         if(index<0 && index>(size-1)){
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
@@ -68,7 +77,7 @@ public class LinkedListImp implements List {
 
     }
 
-    private com.study.List.Node getNode(int index){
+    private Node getNode(int index){
         Node node = head;
         for (int i = 0; i <size ; i++) {
             if(i==index){
