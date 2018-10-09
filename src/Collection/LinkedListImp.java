@@ -1,6 +1,6 @@
 package Collection;
 
-import com.study.List.*;
+
 import com.study.List.Node;
 
 import java.util.NoSuchElementException;
@@ -9,8 +9,8 @@ import java.util.NoSuchElementException;
  * Created by dsk16 on 10/9/2018.
  */
 public class LinkedListImp implements List {
-    com.study.List.Node head;
-    com.study.List.Node tail;
+    Node head;
+    Node tail;
     int size;
 
 
