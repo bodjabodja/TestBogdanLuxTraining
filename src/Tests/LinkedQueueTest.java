@@ -33,7 +33,9 @@ public class LinkedQueueTest {
         LinkedQueue lq = new LinkedQueue();
         int expected = 6;
         lq.enqueue(5);
+        lq.enqueue(7);
         lq.enqueue(expected);
+        lq.dequeue();
         lq.dequeue();
 
         Assert.assertEquals(expected,lq.dequeue());
