@@ -1,5 +1,8 @@
 package Collection;
+//FIFO
 
+
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
@@ -12,7 +15,7 @@ public class MyArrayListImpl implements List {
 
     static  final int INITIAL_CAPACITY = 5;
 
-    MyArrayListImpl(){
+    public MyArrayListImpl(){
         array = new Object[INITIAL_CAPACITY];
     }
 
@@ -125,6 +128,26 @@ public class MyArrayListImpl implements List {
         }
 
         throw new NoSuchElementException("There is no such element with input value in Array!");
+    }
+
+    public Iterator iterator(){
+        return new MyIterator();
+    }
+
+    private class MyIterator implements Iterator{
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index<=size;
+        }
+
+        @Override
+        public Object next() {
+            Object res = array[index];
+            index++;
+            return res;
+        }
     }
 
     @Override
