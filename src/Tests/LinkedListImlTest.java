@@ -4,6 +4,8 @@ import Collection.LinkedListImp;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Iterator;
+
 /**
  * Created by dsk16 on 10/9/2018.
  */
@@ -42,6 +44,21 @@ public class LinkedListImlTest {
         ll.remove(0);
 
         Assert.assertEquals(expected,ll.get(0));
+    }
+
+    @Test
+    public void iteratorTest(){
+        LinkedListImp ll = new LinkedListImp();
+        for (int i = 0; i < 5; i++) {
+            ll.add(i);
+        }
+        Iterator it = ll.iterator();
+        for (int i = 0; i < 5; i++) {
+            Assert.assertEquals(true,it.hasNext());
+
+            Assert.assertEquals(i,it.next());
+
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package Collection;
 
 
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -84,7 +85,7 @@ public class LinkedListImp implements List {
                 return node;
             }
             node = node.next;
-            i++;
+
         }
         throw new NoSuchElementException("asdgfdsg");
 
@@ -181,5 +182,25 @@ public class LinkedListImp implements List {
             i--;
         }
         throw new NoSuchElementException("indexOf: no such element in list!");
+    }
+
+    public Iterator iterator(){
+        return new MyIterator();
+    }
+
+    private class MyIterator implements Iterator{
+        private int index = 0;
+
+        @Override
+        public boolean hasNext() {
+            return index<=size;
+        }
+
+        @Override
+        public Object next() {
+            Node node = getNode(index);
+            index++;
+            return node.value;
+        }
     }
 }
