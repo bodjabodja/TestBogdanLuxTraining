@@ -10,7 +10,7 @@ import java.util.StringJoiner;
 /**
  * Created by dsk16 on 10/9/2018.
  */
-public class LinkedListImp implements List {
+public class LinkedListImp implements List, Iterable {
    private Node head;
     private Node tail;
     private int size;
@@ -197,6 +197,7 @@ public class LinkedListImp implements List {
         return strJ.toString();
     }
 
+    @Override
     public Iterator iterator(){
         return new MyIterator();
     }
