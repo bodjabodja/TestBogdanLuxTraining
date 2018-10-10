@@ -5,17 +5,19 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import static org.junit.Assert.assertEquals;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by dsk16 on 10/9/2018.
  */
 public class MyArraListImlTest {
-
+    MyArrayListImpl<String> alSt;
     @Before
     public void dobefore(){
-        MyArrayListImpl<String> alSt = new MyArrayListImpl<>();
+        alSt = new MyArrayListImpl<>();
         for (int i = 0; i < 5; i++) {
             alSt.add("str"+i);
         }
@@ -45,6 +47,10 @@ public class MyArraListImlTest {
 
     @Test
     public void removeTest(){
+        for (int i = 0; i < 4; i++) {
+            alSt.remove(0);
+            Assert.assertEquals(alSt.get(0),"str"+(i+1));
+        }
 
     }
 }
