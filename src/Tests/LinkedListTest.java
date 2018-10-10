@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -16,6 +17,7 @@ import static org.junit.Assert.assertTrue;
 
 public class LinkedListTest {
     LinkedListImp arrayWithData;
+    LinkedListImp<String> arrayWithData1;
 
     @Before
     public void before() {
@@ -25,6 +27,29 @@ public class LinkedListTest {
         arrayWithData.add("str3");
     }
 
+    @Before
+    public void beforeGen() {
+        arrayWithData1 = new LinkedListImp<>();
+        arrayWithData1.add("str1");
+        arrayWithData1.add("str2");
+        arrayWithData1.add("str3");
+    }
+
+    @Test
+    public void forEachTest(){
+        for (Object str: arrayWithData) {
+            //System.out.println(str);
+            assertEquals(str,str);
+        }
+    }
+
+    @Test
+    public void forEachTestGen(){
+        for (String str: arrayWithData1) {
+            //System.out.println(str);
+            assertEquals(str,str);
+        }
+    }
 
     @Test
     public void testAddIntoEmptyList() {

@@ -10,9 +10,9 @@ import java.util.StringJoiner;
 /**
  * Created by dsk16 on 10/9/2018.
  */
-public class LinkedListImp<E> implements List<E>, Iterable {
-    private Node head;
-    private Node tail;
+public class LinkedListImp<E> implements List<E>, Iterable<E> {
+    private Node<E> head;
+    private Node<E> tail;
     private int size;
 
     private static class Node<E> {
@@ -130,7 +130,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
     }
 
     @Override
-    public E set(Object value, int index) {
+    public E set(E value, int index) {
         Node current = getNode(index);
         current.value=value;
         @SuppressWarnings("unchecked")
@@ -155,7 +155,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(E value) {
         Node node = head;
         for (int i = 0; i <size ; i++) {
             if(value.equals(node.value)){
@@ -167,7 +167,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
     }
 
     @Override
-    public int indexOf(Object value) {
+    public int indexOf(E value) {
         Node node = head;
         for (int i = 0; i <size ; i++) {
             if(Objects.equals(value,node.value)){
@@ -207,7 +207,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
     }
 
     @Override
-    public Iterator iterator(){
+    public Iterator<E> iterator(){
         return new MyIterator();
     }
 
