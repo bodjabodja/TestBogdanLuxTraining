@@ -16,7 +16,11 @@ public class HashMapImpTest {
         hmap = new HashMapIml<>();
         hmap.put("John",25);
         hmap.put("Jane",20);
-        hmap.put("Mary",15);
+        hmap.put("Mary",12);
+        hmap.put("Tom",23);
+        hmap.put("Rex",34);
+        hmap.put("Adam",32);
+        hmap.put("Arnold",45);
     }
 
     @Test
@@ -24,15 +28,15 @@ public class HashMapImpTest {
         Assert.assertEquals(new Integer(25), hmap.get("John"));
         Assert.assertEquals(new Integer(20), hmap.get("Jane"));
         Assert.assertEquals(null,hmap.get("Janes"));
-        Assert.assertEquals(3, hmap.size());
+        Assert.assertEquals(7, hmap.size());
     }
 
     @Test
     public void putIfAbsentTest(){
         Assert.assertEquals(new Integer(25), hmap.putIfAbsent("John",15));
-        Assert.assertEquals(new Integer(15), hmap.putIfAbsent("Janes",15));
+        Assert.assertEquals(null, hmap.putIfAbsent("Janes",15));
         Assert.assertEquals(new Integer(15), hmap.get("Janes"));
-        Assert.assertEquals(4, hmap.size());
+        Assert.assertEquals(8, hmap.size());
 
     }
 
@@ -41,6 +45,6 @@ public class HashMapImpTest {
         Assert.assertEquals(true, hmap.containsKey("John"));
         Assert.assertEquals(true, hmap.containsKey("Jane"));
         Assert.assertEquals(false, hmap.containsKey("Janes"));
-        Assert.assertEquals(3, hmap.size());
+        Assert.assertEquals(7, hmap.size());
     }
 }

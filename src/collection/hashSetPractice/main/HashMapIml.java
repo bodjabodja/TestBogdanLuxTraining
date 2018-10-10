@@ -8,22 +8,32 @@ import java.util.List;
  */
 public class HashMapIml<K, V> implements Map<K, V> {
     private int size;
-    private int index;
+
     private final int BUCKET_SIZE = 5;
     private List<Entry<K, V>>[] buckets = (ArrayList<Entry<K, V>>[]) new ArrayList[BUCKET_SIZE];
 
     public HashMapIml() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < BUCKET_SIZE; i++) {
             buckets[i]= new ArrayList<Entry<K, V>>();
         }
     }
 
-
+    private void checkIfShouldGrow(){
+        if(size>buckets.length*0.5){
+            List<Entry<K, V>>[] tmp = (ArrayList<Entry<K, V>>[]) new ArrayList[buckets.length*2];
+            for (int i = buckets.length; i < buckets.length*2; i++) {
+                tmp[i] = new ArrayList<Entry<K, V>>();
+            }
+            System.arraycopy(buckets,0,tmp,0,buckets.length);
+            buckets=tmp;
+        }
+    }
 
     @Override
     public V put(K key, V value) {
         V result = null;
         int index = getIndex(key);
+        checkIfShouldGrow();
         List<Entry<K, V>> bucket = buckets[index];
 
         for (Entry<K,V> en:bucket ) {
@@ -41,7 +51,7 @@ public class HashMapIml<K, V> implements Map<K, V> {
     }
 
     private int getIndex(K key){
-        return key.hashCode()%BUCKET_SIZE;
+        return Math.abs(key.hashCode()%buckets.length);
     }
 
     @Override
