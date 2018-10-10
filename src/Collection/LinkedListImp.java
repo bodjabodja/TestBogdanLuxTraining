@@ -11,23 +11,24 @@ import java.util.StringJoiner;
 /**
  * Created by dsk16 on 10/9/2018.
  */
-public class LinkedListImp implements List, Iterable {
-   private Node head;
+public class LinkedListImp<E> implements List<E>, Iterable {
+    private Node head;
     private Node tail;
     private int size;
 
-    private static class Node {
-        private Object value;
+    private static class Node<E> {
+        private E value;
         private Node next;
         private Node prev;
 
-        private Node(Object value) {
+        private Node(E value) {
             this.value = value;
         }
     }
 
     @Override
-    public void add(Object value) {
+    public void add(E value) {
+        @SuppressWarnings("unchecked")
         Node newNode = new Node(value);
         if(size==0){
             head=newNode;
@@ -43,7 +44,8 @@ public class LinkedListImp implements List, Iterable {
     }
 
     @Override
-    public void add(Object value, int index) {
+    public void add(E value, int index) {
+        @SuppressWarnings("unchecked")
         Node newNode = new Node(value);
         if(index<0 || index>(size)){
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
@@ -95,7 +97,7 @@ public class LinkedListImp implements List, Iterable {
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         if(index<0 && index>(size-1)){
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
@@ -115,19 +117,19 @@ public class LinkedListImp implements List, Iterable {
 
 
         size--;
-        return removeble.value;
+        return (E) removeble.value;
     }
 
     @Override
-    public Object get(int index) {
-        return getNode(index).value;
+    public E get(int index) {
+        return (E) getNode(index).value;
     }
 
     @Override
-    public Object set(Object value, int index) {
+    public E set(Object value, int index) {
         Node current = getNode(index);
         current.value=value;
-        return current.value;
+        return (E) current.value;
     }
 
     @Override
@@ -173,7 +175,7 @@ public class LinkedListImp implements List, Iterable {
     }
 
     @Override
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(E value) {
         Node node = tail;
         for (int i = size-1; i >=0 ; i--) {
             if(Objects.equals(value,node.value)){
@@ -203,7 +205,7 @@ public class LinkedListImp implements List, Iterable {
         return new MyIterator();
     }
 
-    private class MyIterator implements Iterator{
+    private class MyIterator<E> implements Iterator<E>{
         private Node current = head;
 
         @Override
@@ -212,8 +214,8 @@ public class LinkedListImp implements List, Iterable {
         }
 
         @Override
-        public Object next() {
-            Object value = current.value;
+        public E next() {
+            E value = (E) current.value;
             current = current.next;
             return value;
         }
