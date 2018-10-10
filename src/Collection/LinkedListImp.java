@@ -5,6 +5,7 @@ package Collection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
@@ -161,7 +162,7 @@ public class LinkedListImp implements List, Iterable {
     public int indexOf(Object value) {
         Node node = head;
         for (int i = 0; i <size ; i++) {
-            if(value == node.value){
+            if(Objects.equals(value,node.value)){
                 return i;
             }
             node = node.next;
@@ -175,7 +176,7 @@ public class LinkedListImp implements List, Iterable {
     public int lastIndexOf(Object value) {
         Node node = tail;
         for (int i = size-1; i >=0 ; i--) {
-            if(value == node.value){
+            if(Objects.equals(value,node.value)){
                 return i;
             }
             node = node.prev;
