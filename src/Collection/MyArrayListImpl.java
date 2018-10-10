@@ -9,19 +9,18 @@ import java.util.StringJoiner;
 /**
  * Created by dsk16 on 10/8/2018.
  */
-public class MyArrayListImpl implements List, Iterable {
-    Object[] array;
+public class MyArrayListImpl<E> implements List<E>, Iterable {
+    private Object[] array;
     int size;
 
-    static  final int INITIAL_CAPACITY = 5;
+    private static  final int INITIAL_CAPACITY = 5;
 
     public MyArrayListImpl(){
         array = new Object[INITIAL_CAPACITY];
     }
 
     @Override
-    public void add(Object value) {
-        // size of newArray = array.length * 1.5
+    public void add(E value) {
         if(size==array.length){
             Object[] newArray = new Object[(int) (size /2*3+1)];
             System.arraycopy(array,0,newArray,0,array.length);
@@ -31,7 +30,7 @@ public class MyArrayListImpl implements List, Iterable {
     }
 
     @Override
-    public void add(Object value, int index) {
+    public void add(E value, int index) {
         if(index>=0 && index<=size-1){
 
             if(size==array.length){
@@ -57,10 +56,11 @@ public class MyArrayListImpl implements List, Iterable {
     }
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         if(index>=0 && index<=size-1){
-            Object removeObj = array[index];
-            Object[] tmpArray = new Object[(int) size-index-1];
+            @SuppressWarnings("unchecked")
+            E removeObj = (E) array[index];
+            Object[] tmpArray = new Object[size-index-1];
             System.arraycopy(array, index+1, tmpArray, 0, size-index-1);
             System.arraycopy(tmpArray, 0, array, index, size-index-1);
             array[size-1]=null;
@@ -72,15 +72,20 @@ public class MyArrayListImpl implements List, Iterable {
     }
 
     @Override
-    public Object get(int index) {
-        return array[index];
+    public E get(int index) {
+        @SuppressWarnings("unchecked")
+        E res = (E) array[index];
+        return res;
     }
 
     @Override
-    public Object set(Object value, int index) {
+    public E set(E value, int index) {
         if(index>=0 && index<=size-1){
             array[index]=value;
-            return  array[index];
+
+            @SuppressWarnings("unchecked")
+            E res = (E) array[index];
+            return  res;
         }else{
             throw new NoSuchElementException("index of element out of bounds!");
         }
@@ -105,7 +110,7 @@ public class MyArrayListImpl implements List, Iterable {
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(E value) {
         return indexOf(value) != -1;
     }
 
@@ -120,7 +125,7 @@ public class MyArrayListImpl implements List, Iterable {
     }
 
     @Override
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(E value) {
         for (int i = size-1; i >=0 ; i--) {
             if(array[i] == value){
                 return i;
@@ -145,7 +150,8 @@ public class MyArrayListImpl implements List, Iterable {
 
         @Override
         public Object next() {
-            Object res = array[index];
+            @SuppressWarnings("unchecked")
+            E res = (E) array[index];
             index++;
             return res;
         }
@@ -163,7 +169,7 @@ public class MyArrayListImpl implements List, Iterable {
         StringJoiner strJ = new StringJoiner(",","{","]");
         for (int i = 0; i < size ; i++) {
             String value = String.valueOf(array[i]);
-            strJ.add(value.toString());
+            strJ.add(value);
         }
         return strJ.toString();
     }
