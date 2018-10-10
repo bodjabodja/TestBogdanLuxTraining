@@ -102,6 +102,9 @@ public class LinkedListImp<E> implements List<E>, Iterable {
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
         Node removeble = getNode(index);
+
+        @SuppressWarnings("unchecked")
+        E res = (E) removeble.value;
         if (index > 0 && index < size - 1) {
             Node prevRem = getNode(index-1);
             Node newxtRem = getNode(index + 1);
@@ -117,19 +120,23 @@ public class LinkedListImp<E> implements List<E>, Iterable {
 
 
         size--;
-        return (E) removeble.value;
+        return res;
     }
 
     @Override
     public E get(int index) {
-        return (E) getNode(index).value;
+        @SuppressWarnings("unchecked")
+                E res = (E) getNode(index).value;
+        return res;
     }
 
     @Override
     public E set(Object value, int index) {
         Node current = getNode(index);
         current.value=value;
-        return (E) current.value;
+        @SuppressWarnings("unchecked")
+        E res = (E) current.value;
+        return res;
     }
 
     @Override
@@ -215,6 +222,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
 
         @Override
         public E next() {
+            @SuppressWarnings("unchecked")
             E value = (E) current.value;
             current = current.next;
             return value;
