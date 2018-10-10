@@ -50,6 +50,8 @@ public class LinkedListImp<E> implements List<E>, Iterable<E> {
             throw new IndexOutOfBoundsException("add by index is out of bounds!");
         }
 
+
+        //TODO: refactor
         if(size==0){
             add(value);
         }else{
@@ -65,8 +67,6 @@ public class LinkedListImp<E> implements List<E>, Iterable<E> {
                 Node current = getNode(index);
                 head=newNode;
                 head.next=current;
-                head.prev = null;
-                current.prev = newNode;
                 size++;
             } else if (index == (size - 1)) {
                 Node prevCurrent = getNode(index - 1);
@@ -82,8 +82,8 @@ public class LinkedListImp<E> implements List<E>, Iterable<E> {
 
     }
 
-    private Node getNode(int index){
-        Node node = head;
+    private Node<E> getNode(int index){
+        Node<E> node = head;
         for (int i = 0; i <size ; i++) {
             if(i==index){
                 return node;
