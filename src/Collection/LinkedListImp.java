@@ -204,18 +204,18 @@ public class LinkedListImp implements List, Iterable {
     }
 
     private class MyIterator implements Iterator{
-        private int index = 0;
+        private Node current = head;
 
         @Override
         public boolean hasNext() {
-            return index<=size;
+            return current != null;
         }
 
         @Override
         public Object next() {
-            Node node = getNode(index);
-            index++;
-            return node.value;
+            Object value = current.value;
+            current = current.next;
+            return value;
         }
     }
 }
