@@ -46,17 +46,12 @@ public class HashMapIml<K, V> implements Map<K, V> {
 
     @Override
     public V putIfAbsent(K key, V value) {
-        int index = getIndex(key);
-        List<Entry<K, V>> bucket = buckets[index];
-        for (Entry<K,V> en:bucket ) {
-            if(key.equals(en.key)){
-                return en.value;
-
-            }
+        V currentValue = get(key);
+        if (currentValue == null) {
+            buckets[getIndex(key)].add(new Entry<K, V>(key, value));
+            size++;
         }
-        bucket.add(new Entry<K, V>(key,value));
-        size++;
-        return value;
+        return currentValue;
     }
 
     @Override
