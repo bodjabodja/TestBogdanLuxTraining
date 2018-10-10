@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 /**
  * Created by dsk16 on 10/8/2018.
  */
-public class MyArrayListImpl implements List {
+public class MyArrayListImpl implements List, Iterable {
     Object[] array;
     int size;
 
@@ -130,6 +130,7 @@ public class MyArrayListImpl implements List {
         throw new NoSuchElementException("There is no such element with input value in Array!");
     }
 
+    @Override
     public Iterator iterator(){
         return new MyIterator();
     }
