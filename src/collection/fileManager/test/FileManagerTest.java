@@ -22,6 +22,6 @@ public class FileManagerTest {
 
     @Test
     public void countDirTest(){
-        Assert.assertEquals(3,FileManager.countDirs("P:\\Users\\dsk16\\New folder"));
+        Assert.assertEquals(3,FileManager.countDirs("C:\\Windows\\WinStore"));
     }
 }

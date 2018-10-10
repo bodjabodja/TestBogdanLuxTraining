@@ -2,6 +2,7 @@ package collection.fileManager.main;
 
 import java.io.File;
 
+//TODO: it works but if we got no entries with access denied
 /**
  * Created by dsk16 on 10/10/2018.
  */
