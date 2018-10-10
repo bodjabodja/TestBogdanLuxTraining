@@ -1,4 +1,4 @@
-package Collection;
+package collection;
 
 import java.util.NoSuchElementException;
 import java.util.StringJoiner;

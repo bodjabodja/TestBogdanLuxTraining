@@ -3,7 +3,7 @@ package Tests;
 /**
  * Created by dsk16 on 10/9/2018.
  */
-import Collection.LinkedListImp;
+import collection.LinkedListImp;
 
 import org.junit.Before;
 import org.junit.Test;

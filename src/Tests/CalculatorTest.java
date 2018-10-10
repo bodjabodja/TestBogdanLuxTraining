@@ -1,6 +1,6 @@
 package Tests;
 
-import Collection.Calculator;
+import collection.Calculator;
 import org.junit.Assert;
 import org.junit.Test;
 

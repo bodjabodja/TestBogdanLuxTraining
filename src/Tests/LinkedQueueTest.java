@@ -4,7 +4,7 @@ package Tests;
  * Created by dsk16 on 10/9/2018.
  */
 
-import Collection.LinkedQueue;
+import collection.LinkedQueue;
 import org.junit.Assert;
 import org.junit.Test;
 

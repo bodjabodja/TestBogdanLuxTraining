@@ -1,6 +1,6 @@
 package Tests;
 
-import Collection.MyArrayListImpl;
+import collection.MyArrayListImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

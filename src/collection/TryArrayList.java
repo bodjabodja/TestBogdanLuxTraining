@@ -1,6 +1,4 @@
-package Collection;
-
-import java.util.Arrays;
+package collection;
 
 public class TryArrayList {
     public static void main(String[] args) {

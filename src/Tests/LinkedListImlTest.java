@@ -1,6 +1,6 @@
 package Tests;
 
-import Collection.LinkedListImp;
+import collection.LinkedListImp;
 import org.junit.Assert;
 import org.junit.Test;
 
