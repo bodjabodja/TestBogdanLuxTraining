@@ -140,7 +140,7 @@ public class MyArrayListImpl implements List, Iterable {
 
         @Override
         public boolean hasNext() {
-            return index<=size;
+            return index!=size;
         }
 
         @Override
