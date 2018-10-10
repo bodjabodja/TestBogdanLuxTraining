@@ -4,7 +4,6 @@ package Collection;
 
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -212,7 +211,7 @@ public class LinkedListImp<E> implements List<E>, Iterable {
         return new MyIterator();
     }
 
-    private class MyIterator<E> implements Iterator<E>{
+    private class MyIterator implements Iterator<E>{
         private Node current = head;
 
         @Override
