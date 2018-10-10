@@ -22,7 +22,8 @@ public class MyArrayListImpl<E> implements List<E>, Iterable {
     @Override
     public void add(E value) {
         if(size==array.length){
-            Object[] newArray = new Object[(int) (size /2*3+1)];
+            Object[] newArray;
+            newArray = new Object[size /2*3+1];
             System.arraycopy(array,0,newArray,0,array.length);
         }
         array[size] = value;
@@ -34,7 +35,8 @@ public class MyArrayListImpl<E> implements List<E>, Iterable {
         if(index>=0 && index<=size-1){
 
             if(size==array.length){
-                Object[] newArray = new Object[(int) (size /2*3+1)];
+                Object[] newArray;
+                newArray = new Object[size /2*3+1];
                 System.arraycopy(array,0,newArray,0,array.length);
             }
 
@@ -44,7 +46,7 @@ public class MyArrayListImpl<E> implements List<E>, Iterable {
                 System.arraycopy(array,0,array,1,array.length);
                 array[index]=value;
             }else {
-                Object[] tmpArray = new Object[(int) (size - index)];
+                Object[] tmpArray = new Object[size - index];
                 System.arraycopy(array, index, tmpArray, 0, size - index);
                 array[index] = value;
                 System.arraycopy(tmpArray, 0, array, index + 1, size - index);
