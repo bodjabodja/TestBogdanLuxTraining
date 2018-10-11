@@ -21,21 +21,28 @@ public class HashMapIml<K, V> implements Map<K, V> {
     }
 
     private void checkIfShouldGrow(){
-        if(size>buckets.length*0.5){
+        if(size+1>buckets.length*0.5){
             List<Entry<K, V>>[] tmp = (ArrayList<Entry<K, V>>[]) new ArrayList[buckets.length*2];
+            List<Entry<K, V>>[] tmpOld = buckets;
             for (int i = buckets.length; i < buckets.length*2; i++) {
                 tmp[i] = new ArrayList<Entry<K, V>>();
             }
-            System.arraycopy(buckets,0,tmp,0,buckets.length);
             buckets=tmp;
+            for (int i = 0; i < size; i++) {
+                //TODO:just do it!
+            }
         }
+    }
+
+    private void insertValueToBuckets(Entry<K,V> entry){
+
     }
 
     @Override
     public V put(K key, V value) {
+        checkIfShouldGrow();
         V result = null;
         int index = getIndex(key);
-        checkIfShouldGrow();
         List<Entry<K, V>> bucket = buckets[index];
 
         for (Entry<K,V> en:bucket ) {
