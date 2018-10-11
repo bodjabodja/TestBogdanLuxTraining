@@ -4,13 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 /**
  * Created by dsk16 on 10/11/2018.
  */
+
+//TODO: create tests for class
 public class FileAnalizer {
     private StringBuilder inputFileString = new StringBuilder();
 
