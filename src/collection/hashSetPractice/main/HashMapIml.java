@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * Created by dsk16 on 10/10/2018.
  */
+
+//TODO: homework to 11.10
 public class HashMapIml<K, V> implements Map<K, V> {
     private int size;
 
