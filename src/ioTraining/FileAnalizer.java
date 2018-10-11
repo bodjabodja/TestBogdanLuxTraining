@@ -47,7 +47,7 @@ public class FileAnalizer {
     }
 
     private String[] returnMesage(String input){
-        Pattern pattern = Pattern.compile("\\.|\\?|\\!");
+        Pattern pattern = Pattern.compile("\\.|\\?|!");
         return pattern.split(input);
     }
 
